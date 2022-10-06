@@ -1,21 +1,63 @@
-public void UserRegistrationSuccessful() 
-{ 
-    RestAssured.baseURI ="https://https://jsonplaceholder.typicode.com/posts"; 
-    RequestSpecification request = RestAssured.given(); 
-    JSONObject requestParams = new JSONObject();
-    requestParams.get("10", "100");
-    requestParams.put("password", "Testrest@123"); 
-    request.body(requestParams.toJSONString());
-    Response response = request.get("/User"); 
-    ResponseBody body = response.getBody();
-    System.out.println(response.getStatusLine());
-    System.out.println(body.asString());
-     
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import static io.restassured.RestAssured;
+import io.restassured.response.Response;
+
+public class ApiTest_01 {
+
+        @Test
+        void api_01 {
+            
+             Response response = get("https://jsonplaceholder.typicode.com/todos/1")
+                
+             System.out.println(response.asString());
+             System.out.println(response.getBody().asString());
+             System.out.println(response.getStatusCode());
+             System.out.println(response.getStatusLine());
+             System.out.println(response.getHeader("content-type"));
+             System.out.println(response.getTime());
 
 
-{
-    "userId": 10,
-    "id": 100,
-    "title": "at nam consequatur ea labore ea harum",
-    "body": "cupiditate quo est a modi nesciunt soluta\nipsa voluptas error itaque dicta in\nautem qui minus magnam et distinctio eum\naccusamus ratione error aut"
-  }
+             int statusCode = response.getStatusCode();
+
+             Assert.assertEquals(statusCode, 200);
+             
+        }
+
+        void api_02 {
+           
+             Response response = get("https://jsonplaceholder.typicode.com/posts/1/comments")
+                
+             System.out.println(response.asString());
+             System.out.println(response.getBody().asString());
+             System.out.println(response.getStatusCode());
+             System.out.println(response.getStatusLine());
+             System.out.println(response.getHeader("content-type"));
+             System.out.println(response.getTime());
+
+
+             int statusCode = response.getStatusCode();
+
+             Assert.assertEquals(statusCode, 200);
+             
+        }
+
+         void api_03 {
+           
+             Response response = get("https://jsonplaceholder.typicode.com/posts")
+                
+             System.out.println(response.asString());
+             System.out.println(response.getBody().asString());
+             System.out.println(response.getStatusCode());
+             System.out.println(response.getStatusLine());
+             System.out.println(response.getHeader("content-type"));
+             System.out.println(response.getTime());
+
+
+             int statusCode = response.getStatusCode();
+
+             Assert.assertEquals(statusCode, 200);
+            
+           }
+         
+}
